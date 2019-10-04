@@ -17,6 +17,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Desafio1 {
 	private WebDriver driver;
 	
+	private By categorieButton = By.id("open-categories-btn");
+	private By candyCategorie = By.id("category-1");
+	private By addBrigadeiro = By.id("add-product-4-btn");
+	private By addAlfajor = By.id("add-product-5-btn");
+	private By allCategorie = By.id("category-all");
+	private By cartButton = By.id("cart-btn");
+	private By applyBrigadeiro = By.id("add-product-4-qtd");
+	private By checkOutButton = By.id("finish-checkout-button");
+	private By checkMessage = By.xpath("//h2[contains(@class,'sc-dNLxif')]");
+	private By closekMessage = By.xpath("//button[contains(@class,'sc-jqCOkK')]");
+	
 	/*@Before
 	public void setUp() {
 		driver = new FirefoxDriver();
@@ -33,43 +44,41 @@ public class Desafio1 {
 		driver.get("https://shopcart-challenge.4all.com/"); //Acessar o site
 		
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("open-categories-btn")));
-		driver.findElement(By.id("open-categories-btn")).click(); //Selecionar a categoria
+		wait.until(ExpectedConditions.elementToBeClickable(categorieButton));
+		driver.findElement(categorieButton).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("category-1")));
-		//waitFixed(4000);
-		driver.findElement(By.id("category-1")).click();//Selecionar categoria doces
+		wait.until(ExpectedConditions.elementToBeClickable(candyCategorie));
+		driver.findElement(candyCategorie).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-4-btn")));
-		driver.findElement(By.id("add-product-4-btn")).click(); //Adicionar o Brigadeiro no carrinho
+		wait.until(ExpectedConditions.elementToBeClickable(addBrigadeiro));
+		driver.findElement(addBrigadeiro).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-5-btn")));
-		driver.findElement(By.id("add-product-5-btn")).click(); //Adicionar o Alfajor no carrinho
+		wait.until(ExpectedConditions.elementToBeClickable(addAlfajor));
+		driver.findElement(addAlfajor).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("open-categories-btn")));
-		driver.findElement(By.id("open-categories-btn")).click(); //Selecionar a categoria
+		wait.until(ExpectedConditions.elementToBeClickable(categorieButton));
+		driver.findElement(categorieButton).click();
 		
-		driver.findElement(By.id("category-all")).click();//Selecionar categoria todos
+		driver.findElement(allCategorie).click();
 		
-		driver.findElement(By.id("cart-btn")).click(); //Acessar o carrinho
+		driver.findElement(cartButton).click();
 		for(int i=0; i<4; i++) {
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-4-qtd")));
-		driver.findElement(By.id("add-product-4-qtd")).click();;
-		}//Aumentar a quantidade de Brigadeiro para 4
+			wait.until(ExpectedConditions.elementToBeClickable(applyBrigadeiro));
+		driver.findElement(applyBrigadeiro).click();;
+		}
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("finish-checkout-button")));
-		driver.findElement(By.id("finish-checkout-button")).click();//finalizar a compra
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		driver.findElement(checkOutButton).click();
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(@class,'sc-dNLxif')]")));
-		String textActual=driver.findElement(By.xpath("//h2[contains(@class,'sc-dNLxif')]")).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(checkMessage));
+		String textActual=driver.findElement(checkMessage).getText();
 		String textExpected="Pedido realizado com sucesso!";
-		Assert.assertEquals(textActual, textExpected);//Validar menssagem
+		Assert.assertEquals(textActual, textExpected);
 		
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'sc-jqCOkK')]")));
-		driver.findElement(By.xpath("//button[contains(@class,'sc-jqCOkK')]")).click();//fechar a menssagem
+		wait.until(ExpectedConditions.elementToBeClickable(closekMessage));
+		driver.findElement(closekMessage).click();
 		
-		driver.quit();//fechar internet	
 	}
 	
 	private void waitFixed(long i) {

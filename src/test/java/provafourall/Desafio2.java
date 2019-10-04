@@ -17,6 +17,20 @@ public class Desafio2 {
 	private WebDriver driver;
 	private Logger log;
 	
+	private By categoryButton = By.id("open-categories-btn");
+	private By drinkCategory = By.id("category-0");
+	private By addCoca = By.id("add-product-0-btn");
+	private By addFanta = By.id("add-product-1-btn");
+	private By addWater = By.id("add-product-2-btn");
+	private By addRisole = By.id("add-product-3-btn");
+	private By cartButton = By.id("cart-btn");
+	private By moreRisole = By.id("add-product-3-qtd");
+	private By lessRisole = By.id("remove-product-3-qtd");
+	private By validateAmount = By.id("price-total-checkout");
+	private By checkOutButton = By.id("finish-checkout-button");
+	private By checkMessage = By.xpath("//h2[contains(@class,'sc-dNLxif')]");
+	private By closekMessage = By.xpath("//button[contains(@class,'sc-jqCOkK')]");
+	
 	@Test
 	public void desafio2() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Ferramentas\\driver\\chromedriver.exe");
@@ -27,30 +41,30 @@ public class Desafio2 {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		driver.get("https://shopcart-challenge.4all.com/"); //Acessar o site
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("open-categories-btn")));
-		driver.findElement(By.id("open-categories-btn")).click(); //Selecionar a categoria
+		wait.until(ExpectedConditions.elementToBeClickable(categoryButton));
+		driver.findElement(categoryButton).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("category-0")));
-		driver.findElement(By.id("category-0")).click(); //selecionar a categoria bebida
+		wait.until(ExpectedConditions.elementToBeClickable(drinkCategory));
+		driver.findElement(drinkCategory).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-0-btn")));
-		driver.findElement(By.id("add-product-0-btn")).click(); //adicionar coca
-		
-		waitFixed(5000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-1-btn")));
-		driver.findElement(By.id("add-product-1-btn")).click(); //adicionar fanta
+		wait.until(ExpectedConditions.elementToBeClickable(addCoca));
+		driver.findElement(addCoca).click();
 		
 		waitFixed(5000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-2-btn")));
-		driver.findElement(By.id("add-product-2-btn")).click(); //adicionar agua
+		wait.until(ExpectedConditions.elementToBeClickable(addFanta));
+		driver.findElement(addFanta).click();
+		
+		waitFixed(5000);
+		wait.until(ExpectedConditions.elementToBeClickable(addWater));
+		driver.findElement(addWater).click();
 		
 		//waitFixed(5000);
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,Toastify__toast-body)]")));
 //		driver.findElement(By.xpath("//div[contains(@class,Toastify__toast-bod)]"));
 			
 		waitFixed(5000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("open-categories-btn")));
-		driver.findElement(By.id("open-categories-btn")).click(); //Selecionar a categoria
+		wait.until(ExpectedConditions.elementToBeClickable(categoryButton));
+		driver.findElement(categoryButton).click();
 		
 		driver.findElement(By.id("category-all")).click();//Selecionar categoria todos
 		
@@ -58,21 +72,21 @@ public class Desafio2 {
 //		driver.findElement(By.xpath("//button[contains(@id,add-product-3-btn)]")).click(); //adicionar risole 
 		
 		waitFixed(5000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-3-btn")));
-		driver.findElement(By.id("add-product-3-btn")).click(); //adicionar risole
+		wait.until(ExpectedConditions.elementToBeClickable(addRisole));
+		driver.findElement(addRisole).click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("cart-btn")));
-		driver.findElement(By.id("cart-btn")).click(); //Acessar o carrinho
+		wait.until(ExpectedConditions.elementToBeClickable(cartButton));
+		driver.findElement(cartButton).click();
 		for(int i=0; i<9; i++) {
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("add-product-3-qtd")));
-			driver.findElement(By.id("add-product-3-qtd")).click();
-		} //adicionar mais 9 produtos
+			wait.until(ExpectedConditions.elementToBeClickable(moreRisole));
+			driver.findElement(moreRisole).click();
+		}
 		
 		
 		for(int i=0; i<5; i++) {
-	  		wait.until(ExpectedConditions.elementToBeClickable(By.id("remove-product-3-qtd")));
-			driver.findElement(By.id("remove-product-3-qtd")).click();
-		} //remover 5 produtos
+	  		wait.until(ExpectedConditions.elementToBeClickable(lessRisole));
+			driver.findElement(lessRisole).click();
+		}
 		
 		/*waitFixed(5000);
 		String textActual = "R$36,00";
@@ -82,7 +96,7 @@ public class Desafio2 {
 		Assert.assertEquals(textExpected, textActual); //validar valor total*/
 		
 		waitFixed(5000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("price-total-checkout")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(validateAmount));
 //		if(driver == null) {
 //			log.severe("Driver é nulo");
 //		}
@@ -91,17 +105,17 @@ public class Desafio2 {
 //			log.severe("Preço total é nulo");
 //		}
 //		log.severe("Mensagem informando o valor que está retornando"+totalPrice.getText());
-		Assert.assertEquals("R$ 36,00", driver.findElement(By.id("price-total-checkout")).getText()); //validar valor total
+		Assert.assertEquals("R$ 36,00", driver.findElement(validateAmount).getText());
 		
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("finish-checkout-button")));
-		driver.findElement(By.id("finish-checkout-button")).click(); //finalizar compra
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		driver.findElement(checkOutButton).click();
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(@class,'sc-dNLxif')]")));
-		Assert.assertEquals(driver.findElement(By.xpath("//h2[contains(@class,'sc-dNLxif')]")).getText(), "Pedido realizado com sucesso!"); //validar mensagem
+		wait.until(ExpectedConditions.visibilityOfElementLocated(checkMessage));
+		Assert.assertEquals(driver.findElement(checkMessage).getText(), "Pedido realizado com sucesso!");
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'sc-jqCOkK')]")));
-		driver.findElement(By.xpath("//button[contains(@class,'sc-jqCOkK')]")).click(); //fechar a menssagem
+		wait.until(ExpectedConditions.elementToBeClickable(closekMessage));
+		driver.findElement(closekMessage).click();
 		
 		
 		
