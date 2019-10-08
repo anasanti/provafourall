@@ -18,7 +18,9 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
   		<!-- <test>Desafio2</test>  -->
-		<webdriver.chrome.driver>C:\Ferramentas\driver\chromedriver.exe</webdriver.chrome.driver>
+  		<webdriver.chrome.driver>C:\Ferramentas\driver\chromedriver.exe</webdriver.chrome.driver> 
+		<webdriver.firefox.driver>C:\Ferramentas\driver\geckodriver.exe</webdriver.firefox.driver>
+		<webdriver.Edge.driver>C:\Ferramentas\driver\IEDriverServer.exe</webdriver.Edge.driver>
 	</properties>
 
 	<dependencies>
@@ -65,6 +67,9 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.22.1</version>
 					<configuration>
+					<systemPropertyVariables>
+					<browserName>Chrome</browserName>
+					</systemPropertyVariables>
 						<includes>
   							<include>**/*.java</include> 
 						</includes>

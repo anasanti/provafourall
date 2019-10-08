@@ -26,7 +26,7 @@ public class Desafio1 {
 	
 	@Before
 	public void setUp() {
-		driver = new DriverManager();
+		driver = new DriverManager(System.getProperty("browserName"));
 		home = new PageHome(driver.getDriver());
 		shopCar = new ShopCar(driver.getDriver());
 	}
